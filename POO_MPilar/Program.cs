@@ -303,3 +303,31 @@ Console.WriteLine("El cliente habla los siguintes idiomas:");
 foreach (Language idioma in cliente1.Address.Country.Languages) {
     Console.WriteLine(idioma.Name);
 }
+
+// Interfaces
+/*ISaludo saludo1 = new Saludoformal(); //Polimorfismo en interfaz
+Customer rodolfo = new Customer { saludo = saludo1 };
+rodolfo.saludo.saludar();
+
+ISaludo saludo2 = new SaludoInformal();
+rodolfo.saludo = saludo2;
+rodolfo.saludo.saludar();
+rodolfo.saludo.saludar("Alan");
+
+Customer mike = new Customer { saludo = saludo2 }; */
+
+//Saludoformal saludoFormal = new SaludoFormal(); //NO polimorfismo
+//SaludoInformal s2 = new SaludoInformal(); //NO polimorfismo
+//SaludoFormal s3 = new SaludoInformal(); //NO polimorfismo
+
+//1. Crear clase Computer
+//2. Crear una Interface IComputerRepository
+//3. Crear una implementación de la interface
+//4. Utilizar los métodos desde Program.cs
+
+IComputerRepository computerRepo = new ComputerListRepository();
+var computers = computerRepo.FindAll();
+Console.WriteLine(computers.Count);
+
+Computer computer1 = computerRepo.FindById(1);
+Console.WriteLine(computer1.Ram);

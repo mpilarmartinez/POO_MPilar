@@ -10,13 +10,18 @@ namespace POO_MPilar
     {
         public string Dni;
         public string Email;
+        public ISaludo saludo;
         public Address Address;
         public RoadVehicle Vehicle; //Polimorfismo
         //porque podria ser cualquiera de sus hijos
         public List<RoadVehicle> PersonalVehicles; //Polimorfismo
-
         public Customer()
         {
+        }
+
+        public void Saludar()
+        {
+            saludo.Saludar();
         }
 
     }
