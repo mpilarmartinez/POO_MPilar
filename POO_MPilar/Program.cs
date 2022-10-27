@@ -331,3 +331,29 @@ Console.WriteLine(computers.Count);
 
 Computer computer1 = computerRepo.FindById(1);
 Console.WriteLine(computer1.Ram);
+
+var computer2 = computerRepo.FindAllByRam(8, 64);
+var computer3 = computerRepo.FindAllByRam(16,128);
+
+Console.WriteLine("fin");
+
+// Comprobar que Save añade un nuevo ordenador: 
+// Caso 1: Añadir un ordenador que Sí se guarde porque no existe
+// Crear un nuevo computer
+Computer computer4 = new Computer { Id = 4, Model = "DELL", Ram = 6 };
+// llamar al método Save
+bool saved = computerRepo.Save(computer4);
+// comprobar si se guardó
+if (saved)
+{
+    Console.WriteLine("Se guardó correctamente el computer4");
+}
+else
+{
+    Console.WriteLine("No se pudo guardar el computer4");
+}
+// Caso 2: Añadir un ordenador que NO se guarde porque ya existe
+
+
+
+
