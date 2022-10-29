@@ -1,5 +1,14 @@
 ﻿using POO_MPilar;
 
+var numero = 1;
+Console.WriteLine(numero++); //primero lo imprime, luego lo incrementa
+Console.WriteLine(numero);
+
+numero = 1;
+Console.WriteLine(++numero); //primero lo incrementa, luego lo imprime
+Console.WriteLine(numero);
+
+
 // crear una variable
 string nombre = "alan";
 
@@ -320,6 +329,8 @@ Customer mike = new Customer { saludo = saludo2 }; */
 //SaludoInformal s2 = new SaludoInformal(); //NO polimorfismo
 //SaludoFormal s3 = new SaludoInformal(); //NO polimorfismo
 
+
+//----------------------Computer----------------------------//
 //1. Crear clase Computer
 //2. Crear una Interface IComputerRepository
 //3. Crear una implementación de la interface
@@ -341,8 +352,13 @@ Console.WriteLine("fin");
 // Caso 1: Añadir un ordenador que Sí se guarde porque no existe
 // Crear un nuevo computer
 Computer computer4 = new Computer { Id = 4, Model = "DELL", Ram = 6 };
+
 // llamar al método Save
+int before = computerRepo.Count();
 bool saved = computerRepo.Save(computer4);
+//la lista de ordenadores crece en 1
+int after = computerRepo.Count();
+
 // comprobar si se guardó
 if (saved)
 {
@@ -352,8 +368,59 @@ else
 {
     Console.WriteLine("No se pudo guardar el computer4");
 }
+// comprobar los que habia antes de añadir y los que hay despues
+// y verificar que hay más
+// comprobar que after es exactamente 1 mayor que before
+if(after - before == 1) Console.WriteLine("Efectivamente la lista de computers se incrementó en 1.");
+
+
+//--------------------------------
+
 // Caso 2: Añadir un ordenador que NO se guarde porque ya existe
 
+//Crear un ordenador con el mismo ID que otro ordenador
+//que ya exista en la lista
+var comp1 = new Computer { Id = 1, Model = "MacBook Pro", Ram = 16 };
+
+//intentar guardar el ordenador en la lista de ordenadores
+before =computerRepo.Count();
+saved= computerRepo.Save(comp1);
+after = computerRepo.Count();
+
+//Comprobar que no se ha guardado nada
+if (!saved) Console.WriteLine("Efectivamente no se ha guardado el comp1");
+// comprobar after y before no son diferentes
+if(after==before) Console.WriteLine("Efectivamente no se ha guardado ningún ordenador");
+
+Console.WriteLine("----------SaveAll-----------");
+
+//1er Caso: insertar 3 ordenadores completamente nuevos, devuelve 3
+Computer pcA = new Computer { Id = 5, Model = "HP MX300", Ram = 8 };
+Computer pcB = new Computer { Id = 6, Model = "Asus 2500", Ram = 16 };
+Computer pcC = new Computer { Id = 7, Model = "Corsair", Ram = 32 };
+
+var pcs = new List<Computer> { pcA, pcB, pcC };
+
+int savedNum = computerRepo.SaveAll(pcs);
+
+if (savedNum == 3) Console.WriteLine("Se han guardado los tres ordednadores nuevos");
+
+//2do Caso: insertar 4 ordenadores, 2 nuevos y 3 que ya existan 7
+//devuelvan dos
+var pc1 = new Computer { Id = 1, Model = "MacBook Pro", Ram = 16 };
+var pc2 = new Computer { Id = 2, Model = "MSI Modern", Ram = 32 };
+var pc3 = new Computer { Id = 3, Model = "Asus A55A", Ram = 8 };
+
+// 2 nuevos
+Computer pc8 = new Computer { Id = 8, Model = "Lenovo", Ram = 32 };
+Computer pc9 = new Computer { Id = 9, Model = "Acer", Ram = 32 };
+
+pcs = new List<Computer> { pc1, pc2, pc3, pc8, pc9 };
+
+savedNum = computerRepo.SaveAll(pcs);
+
+if (savedNum == 2) Console.WriteLine("Se han guardado los 2 ordenadores");
 
 
-
+// PrintAll
+computerRepo.PrintAll();

@@ -30,39 +30,54 @@ namespace POO_MPilar
         bool Save(Computer computer);
 
         // recuperar el número de ordenadores, para saber cuántos ordenadores hay
-       // int Count();
+        int Count();
+
+        // guardar varios
+        int SaveAll(List<Computer> computersToAdd);
+
+        // imprimir por consola (Print) todos los ordenadores de la lista
+        // que ya tenemos
+        void PrintAll();
+
+        // modificar
+
+
+        //borrar
+
+
+        //void Delete();
+
+
+        // borrar por Ids
+        // void DeleteById();
+
+
+        // borrar todos
+        // void DeleteAll();
 
 
         // buscar por su Model
 
-        // guardar
-
-
-        // imprimir todos los ordenadores de la lista
-
-        // guardar varios
-
-
-        // modificar
-
-
-        /* guardar varios
-        void SaveAllById(int id);
 
         // crear
-        void Create();
+        // void Create();
+
 
         // modificar
-        void Update();
+        // void Update();
 
-        // borrar
-        void Delete();
 
-        // borrar por ids
-        void DeleteById();
+        // crear
+        //void Create();
+
+
+        // modificar
+        //void Update();
+
 
         // borrar todos
-        void DeleteAll(); */
+
+
 
     }
 }

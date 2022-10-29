@@ -99,18 +99,41 @@ namespace POO_MPilar
         }
 
         // Count
-        /*public int Count()
+        public int Count()
         {
             // return computers.Count;
 
             int contador = 0;
+            foreach (Computer computer in computers)
+                contador++;
+            //for (int i=0; i<com`puters.Count; i++)
+            return contador;
+        }
 
-        }*/
+        // guardar varios y devolver el numero de ordenadores guardados
+        public int SaveAll(List<Computer> computersToAdd){
+
+            //computersToAdd es la nueva lista de ordenadores a agregar
+            //computers es la lista de ordenadores que ya tenemos
+            int contador = 0;
+            foreach (Computer computer in computersToAdd){
+                bool saved = Save(computer);
+                if (saved) contador++;
+            }
+            return contador;
+        }
+
+        public void PrintAll() { 
+        
+        foreach (Computer computer in computers) {
+                Console.WriteLine(computer);
+
+        }
+
         public bool ExistsbyId(int id)
         {
             throw new NotImplementedException();
         }
-
         public List<Computer> FindAllByid()
         {
             throw new NotImplementedException();
