@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.Metadata.Ecma335;
@@ -127,6 +128,57 @@ namespace POO_MPilar
         
         foreach (Computer computer in computers) {
                 Console.WriteLine(computer);
+        }
+        
+        }
+
+        public bool Update(Computer computer) {
+
+            // comprobar si existe
+            if (!ExistsById(computer.Id))
+                return false;
+
+            // si no existe entonces devolver false
+            for (int i = 0; i < computers.Count; i++)
+            {
+                if (computers[i].Id == computer.Id)
+                {
+                    // actualizar atributos del computer de la lista con los
+                    // del computer que llega como parámetro
+                    computers[i].Model = computer.Model;
+                    computers[i].Ram = computer.Ram;
+
+                    return true; //una vez modificado salimos del métoddo
+                }
+            }
+            return false;
+        
+        }
+
+        //borrar por id
+        public bool DeleteById(int id) {
+            //comprobar si existe
+        if(!ExistsById(id))
+           return false;
+
+            for (int i = 0; i < computers.Count; i++) {
+                if (computers[i].Id == id) {
+                    computers.RemoveAt(i);
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public bool DeleteAll() {
+            // if (computers.Count == 0)
+            //     return false;
+
+            if (!computers.Any())
+                return false;
+            
+            computers.Clear();
+            return true;
 
         }
 

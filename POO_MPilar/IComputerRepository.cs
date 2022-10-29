@@ -40,43 +40,19 @@ namespace POO_MPilar
         void PrintAll();
 
         // modificar
+        bool Update(Computer computer);
 
-
-        //borrar
-
-
-        //void Delete();
-
-
-        // borrar por Ids
-        // void DeleteById();
-
-
+        //borrar por id
+        bool DeleteById(int id);
+     
         // borrar todos
-        // void DeleteAll();
-
+           bool DeleteAll();
 
         // buscar por su Model
 
 
         // crear
         // void Create();
-
-
-        // modificar
-        // void Update();
-
-
-        // crear
-        //void Create();
-
-
-        // modificar
-        //void Update();
-
-
-        // borrar todos
-
 
 
     }

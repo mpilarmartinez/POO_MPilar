@@ -421,6 +421,48 @@ savedNum = computerRepo.SaveAll(pcs);
 
 if (savedNum == 2) Console.WriteLine("Se han guardado los 2 ordenadores");
 
-
-// PrintAll
+Console.WriteLine("----------PrintAll-------");
 computerRepo.PrintAll();
+
+Console.WriteLine("----------Update-------");
+// 1. Tener un ordenador con los atributos modificados menos el ID
+var computer1Modified = new Computer { Id = 1, Model = "MacBook Pro Modificado", Ram = 32 };
+
+//2. Invocar el método Update
+bool IsModified = computerRepo.Update(computer1Modified);
+
+//3. Comprobar que el objeto ordenador con Id 1 ha sido modificado
+if (IsModified) Console.WriteLine("Se ha modificado el ordenador con Id 1");
+//buscar el ordenador moficado y comprobar el nombre:
+var computer1FromList = computerRepo.FindById(1);
+if(computer1FromList.Model.Equals("MacBook Pro Modificado")&&
+    (computer1FromList.Ram == 32))
+{
+    Console.WriteLine("Se ha modificado los atributos " +
+        "del ordenador con Id 1");
+}
+
+Console.WriteLine("----------DeleteById-------");
+
+before = computerRepo.Count();
+
+bool isDeleted =computerRepo.DeleteById(2);
+after = computerRepo.Count();
+
+if (isDeleted) Console.WriteLine("Se ha eliminado el ordenador con Id 2");
+
+if(after == before -1)
+{
+    Console.WriteLine("Correcto, se ha eliminado");
+}
+
+Console.WriteLine("----------DeleteAll-------");
+
+before = computerRepo.Count();
+bool hasDeletedAll = computerRepo.DeleteAll();
+after = computerRepo.Count();
+if (hasDeletedAll) Console.WriteLine("Se han eliminado todos los ordenadores");
+if (after == 0) Console.WriteLine("Se han eliminado todos los ordenadores");
+
+hasDeletedAll = computerRepo.DeleteAll(); // false
+if (hasDeletedAll) Console.WriteLine("Se han eliminado todos los ordenadores otra vez");
