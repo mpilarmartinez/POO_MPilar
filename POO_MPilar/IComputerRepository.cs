@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -47,13 +48,6 @@ namespace POO_MPilar
      
         // borrar todos
            bool DeleteAll();
-
-        // buscar por su Model
-
-
-        // crear
-        // void Create();
-
 
     }
 }

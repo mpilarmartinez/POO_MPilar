@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,14 +15,18 @@ namespace POO_MPilar
     {
         // Atributos
         private List<Computer> computers;
+        private ComputerValidator Validator;
+        
         // Constructor
-        public ComputerListRepository()
+        public ComputerListRepository(ComputerValidator validator)
         {
+            //Simulamos que la lista computers es una base de datos
             computers = new List<Computer>{
                 new Computer{ Id = 1, Model = "MackBook Pro", Ram=16 },
                 new Computer{ Id = 2, Model = "MSI Modern", Ram=32 },
                 new Computer{ Id = 3, Model = "Asus Assa", Ram=8 },
             };
+            Validator = validator;
         }
 
         // Implementar métodos de interfaz
@@ -95,8 +100,16 @@ namespace POO_MPilar
             if (exist) return false;
 
             // si no existe entonces lo añado a la lista y devuelvo true
+            ComputerValidator validator = new ComputerValidator();
+            
+            if (!validator.Validate(computer))
+                return false;
+
             computers.Add(computer);
             return true;
+
+
+
         }
 
         // Count
@@ -181,7 +194,6 @@ namespace POO_MPilar
             return true;
 
         }
-
         public bool ExistsbyId(int id)
         {
             throw new NotImplementedException();

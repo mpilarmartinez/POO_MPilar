@@ -335,8 +335,8 @@ Customer mike = new Customer { saludo = saludo2 }; */
 //2. Crear una Interface IComputerRepository
 //3. Crear una implementación de la interface
 //4. Utilizar los métodos desde Program.cs
-
-IComputerRepository computerRepo = new ComputerListRepository();
+ComputerValidator validator = new ComputerValidator();
+IComputerRepository computerRepo = new ComputerListRepository(validator);
 var computers = computerRepo.FindAll();
 Console.WriteLine(computers.Count);
 
